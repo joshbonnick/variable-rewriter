@@ -10,7 +10,6 @@ class PHPVariableFinder:
         self.filename = filename
         self.found_variables = []
 
-    def variables(self):
         if not os.path.isfile(self.filename):
             raise Exception(f'{self.filename} not found or is not a file.')
 
@@ -18,6 +17,13 @@ class PHPVariableFinder:
             for line in file:
                 self.found_variables += self.parse(line)
 
+            file.seek(0)
+            self.file_content = file.read()
+
+    def content(self):
+        return self.file_content
+
+    def variables(self):
         return self.found_variables
 
     def parse(self, line: string):
