@@ -1,9 +1,9 @@
 from case_converter import CaseConverter
-from php_file_parser import PHPFileParser
+from contracts.file_parser import FileParser
 
 
 class VariableConverter:
-    def __init__(self, parser: PHPFileParser, method: str, delimiter: str):
+    def __init__(self, parser: FileParser, method: str, delimiter: str):
         self.new_content = parser.content()
 
         for variable in parser.variables():

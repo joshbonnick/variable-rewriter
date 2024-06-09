@@ -1,8 +1,10 @@
 import os.path
 import re
 
+from contracts.file_parser import FileParser
 
-class PHPFileParser:
+
+class PHPFileParser(FileParser):
     REGEX = r'\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*'
 
     def __init__(self, filename: str):
