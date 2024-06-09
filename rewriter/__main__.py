@@ -1,14 +1,14 @@
 import sys
 
-from rewriter.php_file_parser import PHPFileParser
-from rewriter.variable_converter import VariableConverter
+from file_writer import FileWriter
+from php_file_parser import PHPFileParser
+from variable_converter import VariableConverter
 
 
 def main(file_name: str, method: str):
     parser = PHPFileParser(file_name)
     converter = VariableConverter(parser, method, '$')
-
-    print(converter.new_content)
+    FileWriter(file_name).write(converter.new_content)
 
 
 if __name__ == '__main__':

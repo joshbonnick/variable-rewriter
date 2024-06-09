@@ -1,5 +1,5 @@
-from rewriter.case_converter import CaseConverter
-from rewriter.php_file_parser import PHPFileParser
+from case_converter import CaseConverter
+from php_file_parser import PHPFileParser
 
 
 class VariableConverter:
