@@ -8,12 +8,20 @@ class PHPVariableFinder:
 
     def __init__(self, filename: string):
         self.filename = filename
+        self.found_variables = []
 
     def variables(self):
         if not os.path.isfile(self.filename):
             raise Exception(f'{self.filename} not found or is not a file.')
 
         with open(self.filename, 'r') as file:
-            file_contents = file.read()
+            for line in file:
+                self.found_variables += self.parse(line)
 
-        return re.findall(self.REGEX, file_contents)
+        return self.found_variables
+
+    def parse(self, line: string):
+        variables = re.findall(self.REGEX, line)
+        filtered_variables = ["$this"]
+
+        return filter(lambda variable: variable not in filtered_variables, variables)
