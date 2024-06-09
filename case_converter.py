@@ -2,18 +2,25 @@ import string
 from re import sub
 
 
+def as_variable(subject: string, delimiter: string = '$'):
+    if len(subject) == 0:
+        return subject
+
+    return delimiter + subject
+
+
 class CaseConverter:
     def __init__(self, subject: string):
-        self.subject = subject
+        self.subject = subject.strip('$')
 
     def camel(self):
-        return "".join(x.capitalize() for x in self.subject.lower().split("_"))
+        return as_variable("".join(x.capitalize() for x in self.subject.lower().split("_")))
 
     def snake(self):
-        return sub("(?<!^)(?=[A-Z])", "_", self.subject).lower()
+        return as_variable(sub("(?<!^)(?=[A-Z])", "_", self.subject).lower())
 
     def upper(self):
-        return self.subject.upper()
+        return as_variable(self.subject.upper())
 
     def lower(self):
-        return self.subject.lower()
+        return as_variable(self.subject.lower())
