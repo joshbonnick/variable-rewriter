@@ -44,12 +44,17 @@ class TestCaseConverter(TestCase):
         converter = rewriter.CaseConverter("Word")
         assert converter.snake() == "word", f'Returned: [{converter.snake()}]'
 
-    def test_empty_string_camel_case(self):
+    def test_chaos_into_snake_case(self):
+        converter = rewriter.CaseConverter("product_Price")
+        assert converter.snake() == "product_price", f'Returned: [{converter.snake()}]'
+        converter = rewriter.CaseConverter("product__Price")
+        assert converter.snake() == "product__price", f'Returned: [{converter.snake()}]'
+        converter = rewriter.CaseConverter("producT_PRice")
+        assert converter.snake() == "produc_t_price", f'Returned: [{converter.snake()}]'
+
+    def test_empty_string(self):
         converter = rewriter.CaseConverter("")
         assert converter.camel() == "", f'Returned: [{converter.camel()}]'
-
-    def test_empty_string_snake_case(self):
-        converter = rewriter.CaseConverter("")
         assert converter.snake() == "", f'Returned: [{converter.snake()}]'
 
     def test_snake_case_when_starting_with_capital(self):

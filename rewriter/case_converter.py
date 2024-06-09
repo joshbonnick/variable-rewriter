@@ -25,7 +25,9 @@ class CaseConverter:
         if len(self.subject) == 0:
             return self.subject
 
-        return self._as_variable(sub("(?<!^)(?=[A-Z])", "_", self.subject).lower())
+        snake = sub(r'(?<=[a-z])(?=[A-Z])', '_', self.subject).lower()
+
+        return self._as_variable(snake)
 
     def upper(self) -> str:
         return self._as_variable(self.subject.upper())
