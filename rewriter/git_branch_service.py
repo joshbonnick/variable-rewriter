@@ -17,9 +17,9 @@ class GitBranchService:
         return self
 
     def push(self, message: str = 'chore: convert variable format', upstream: str = 'origin'):
-        subprocess.run(["git", "add", "."])
-        subprocess.run(["git", "commit", "-m", message])
-        subprocess.run(["git", 'push', '-u', upstream, self.branch_name])
+        subprocess.run(["git", "add", "."], capture_output=True, text=True)
+        subprocess.run(["git", "commit", "-m", message], capture_output=True, text=True)
+        subprocess.run(["git", 'push', '-u', upstream, self.branch_name], capture_output=True, text=True)
 
     @staticmethod
     def get_branches() -> List[str]:
