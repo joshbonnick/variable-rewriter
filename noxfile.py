@@ -35,4 +35,6 @@ def tests(session):
 
     session.install(generated_sdist)
 
-    session.run("py.test", "tests/", *session.posargs)
+    result = session.run("pytest", "tests/", *session.posargs, external=True)
+    if result.failed:
+        session.error("Tests failed. See above output for details.")
