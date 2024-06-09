@@ -3,7 +3,7 @@ import re
 import string
 
 
-class PHPVariableFinder:
+class PHPFileParser:
     REGEX = r'\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*'
 
     def __init__(self, filename: string):

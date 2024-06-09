@@ -1,7 +1,7 @@
 import os
 from unittest import TestCase
 
-from php_variable_finder import PHPVariableFinder
+from php_file_parser import PHPFileParser
 
 
 class TestPHPVariableFinder(TestCase):
@@ -10,12 +10,12 @@ class TestPHPVariableFinder(TestCase):
 
     def test_find_variables_in_class_stub(self):
         file_path = os.path.join(self.test_files_dir, 'class.stub')
-        finder = PHPVariableFinder(file_path)
+        finder = PHPFileParser(file_path)
 
         self.assertListEqual(finder.variables(), ['$name', '$color', '$seeds', '$fruit_name', '$fruit_label'])
 
     def test_variables_are_filtered_out(self):
         file_path = os.path.join(self.test_files_dir, 'class.stub')
-        finder = PHPVariableFinder(file_path)
+        finder = PHPFileParser(file_path)
 
         self.assertTrue("$this" not in finder.variables())
