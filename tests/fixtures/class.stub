@@ -9,12 +9,12 @@ class Fruit
 
   public function setName($name): void
   {
-    $this->name = $name;
+      $this->name = $name;
   }
 
   public function get_name(): string
   {
-    return $this->name;
+      return $this->name;
   }
 
   protected function getLabel(): string
