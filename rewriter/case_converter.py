@@ -1,6 +1,5 @@
 from re import findall
 from re import match
-from re import split
 from re import sub
 
 
@@ -16,7 +15,7 @@ class CaseConverter:
         if self._is_camel_case():
             return self.subject
 
-        words = findall(r'[A-Za-z][a-z]*', self.subject) if match(r'^[A-Za-z]+$', self.subject) else split(r'[\s_-]+', self.subject)
+        words = self._split_words()
 
         self.subject = words[0].lower() + ''.join(word.capitalize() for word in words[1:])
 
@@ -33,6 +32,14 @@ class CaseConverter:
 
     def lower(self) -> str:
         return self._as_variable(self.subject.lower())
+
+    def _split_words(self) -> list:
+        words = []
+
+        for word_list in [findall(r'[A-Z]?[a-z]*', word) for word in self.subject.split('_')]:
+            words.extend(word_list)
+
+        return words
 
     def _as_variable(self, subject: str) -> str:
         if len(subject) == 0:

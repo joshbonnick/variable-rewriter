@@ -29,8 +29,16 @@ class TestCaseConverter(TestCase):
     def test_single_word_camel_case(self):
         converter = rewriter.CaseConverter("word")
         assert converter.camel() == "word", f'Returned: [{converter.camel()}]'
+
+    def test_multiple_word_camel_case(self):
+        converter = rewriter.CaseConverter("three_wordVariable")
+        assert converter.camel() == "threeWordVariable", f'Returned: [{converter.camel()}]'
         converter = rewriter.CaseConverter("two_word")
         assert converter.camel() == "twoWord", f'Returned: [{converter.camel()}]'
+
+    def test_chaos_to_camel_case(self):
+        converter = rewriter.CaseConverter("convert-to_camel case")
+        assert converter.camel() == "convertToCamelCase", f'Returned: [{converter.camel()}]'
 
     def test_single_word_snake_case(self):
         converter = rewriter.CaseConverter("Word")
