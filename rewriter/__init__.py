@@ -1,7 +1,7 @@
 import sys
 
-from php_file_parser import PHPFileParser
-from variable_converter import VariableConverter
+from rewriter.php_file_parser import PHPFileParser
+from rewriter.variable_converter import VariableConverter
 
 
 def main(file_name: str, method: str):

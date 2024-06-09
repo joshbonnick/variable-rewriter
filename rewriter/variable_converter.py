@@ -1,5 +1,5 @@
-from case_converter import CaseConverter
-from php_file_parser import PHPFileParser
+from rewriter.case_converter import CaseConverter
+from rewriter.php_file_parser import PHPFileParser
 
 
 class VariableConverter:
@@ -7,4 +7,4 @@ class VariableConverter:
         self.new_content = parser.content()
 
         for variable in parser.variables():
-            self.new_content = self.new_content.replace(variable, getattr(CaseConverter(variable).set_delimiter(delimiter), method)())
+            self.new_content = self.new_content.replace(variable, getattr(CaseConverter(variable, delimiter), method)())

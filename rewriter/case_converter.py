@@ -2,8 +2,8 @@ from re import sub
 
 
 class CaseConverter:
-    def __init__(self, subject: str):
-        self.variable_delimiter = ""
+    def __init__(self, subject: str, delimiter: str = ''):
+        self.variable_delimiter = delimiter
         self.subject = subject.strip(self.variable_delimiter)
 
     def as_variable(self, subject: str):
@@ -11,11 +11,6 @@ class CaseConverter:
             return subject
 
         return self.variable_delimiter + subject
-
-    def set_delimiter(self, delimiter: str):
-        self.variable_delimiter = delimiter
-
-        return self
 
     def camel(self) -> str:
         return self.as_variable("".join(x.capitalize() for x in self.subject.lower().split("_")))
