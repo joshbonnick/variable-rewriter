@@ -1,7 +1,7 @@
 import os
 from unittest import TestCase
 
-from file_writer import FileWriter
+from rewriter.file_writer import FileWriter
 
 
 class TestFileWriter(TestCase):

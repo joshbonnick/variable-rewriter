@@ -1,11 +1,10 @@
-import string
 import sys
 
 from php_file_parser import PHPFileParser
 from variable_converter import VariableConverter
 
 
-def main(file_name: string, method: str):
+def main(file_name: str, method: str):
     parser = PHPFileParser(file_name)
     converter = VariableConverter(parser, method, '$')
 

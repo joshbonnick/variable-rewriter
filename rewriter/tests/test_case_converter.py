@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from case_converter import CaseConverter
+from rewriter.case_converter import CaseConverter
 
 
 class TestCaseConverter(TestCase):

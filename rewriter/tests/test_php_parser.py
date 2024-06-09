@@ -1,7 +1,7 @@
 import os
 from unittest import TestCase
 
-from php_file_parser import PHPFileParser
+from rewriter.php_file_parser import PHPFileParser
 
 
 class TestPHPVariableFinder(TestCase):
