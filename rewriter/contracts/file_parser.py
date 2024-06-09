@@ -4,6 +4,3 @@ class FileParser:
 
     def variables(self) -> list:
         pass
-
-    def parse(self, line: str) -> list:
-        pass

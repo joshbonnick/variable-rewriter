@@ -16,7 +16,7 @@ class PHPFileParser(FileParser):
 
         with open(self.filename, 'r') as file:
             for line in file:
-                self.found_variables += self.parse(line)
+                self.found_variables += self._parse(line)
 
             file.seek(0)
             self.file_content = file.read()
@@ -27,7 +27,7 @@ class PHPFileParser(FileParser):
     def variables(self) -> list:
         return self.found_variables
 
-    def parse(self, line: str) -> list:
+    def _parse(self, line: str) -> list:
         variables = re.findall(self.REGEX, line)
         filtered_variables = ["$this"]
 
