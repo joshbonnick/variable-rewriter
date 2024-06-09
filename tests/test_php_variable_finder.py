@@ -12,7 +12,7 @@ class TestPHPVariableFinder(TestCase):
         file_path = os.path.join(self.test_files_dir, 'class.stub')
         finder = PHPVariableFinder(file_path)
 
-        self.assertListEqual(finder.variables(), ['$fruit_label', '$fruit_name'])
+        self.assertListEqual(finder.variables(), ['$name', '$color', '$seeds', '$fruit_name', '$fruit_label'])
 
     def test_variables_are_filtered_out(self):
         file_path = os.path.join(self.test_files_dir, 'class.stub')

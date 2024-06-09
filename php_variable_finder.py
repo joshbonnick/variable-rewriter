@@ -24,4 +24,4 @@ class PHPVariableFinder:
         variables = re.findall(self.REGEX, line)
         filtered_variables = ["$this"]
 
-        return filter(lambda variable: variable not in filtered_variables, variables)
+        return filter(lambda variable: variable not in filtered_variables and variable not in self.found_variables, variables)
