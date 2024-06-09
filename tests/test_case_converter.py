@@ -1,7 +1,17 @@
 from unittest import TestCase
+
 from case_converter import CaseConverter
 
+
 class TestCaseConverter(TestCase):
+    def test_lower_case_conversion(self):
+        converter = CaseConverter("some_CASEexample")
+        assert converter.lower() == "some_caseexample"
+
+    def test_upper_case_conversion(self):
+        converter = CaseConverter("some_CASEeXaMple")
+        assert converter.upper() == "SOME_CASEEXAMPLE"
+
     def test_camel_case_conversion(self):
         converter = CaseConverter("snake_case_example")
         assert converter.camel() == "SnakeCaseExample"
