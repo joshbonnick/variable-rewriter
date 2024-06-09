@@ -1,19 +1,15 @@
 import string
 import sys
 
-from case_converter import CaseConverter
 from php_file_parser import PHPFileParser
+from variable_converter import VariableConverter
 
 
-def main(filename: string, convert_to: string):
-    file = PHPFileParser(filename)
+def main(file_name: string, method: str):
+    parser = PHPFileParser(file_name)
+    converter = VariableConverter(parser, method, '$')
 
-    new_content = file.content()
-
-    for variable in file.variables():
-        new_content = new_content.replace(variable, getattr(CaseConverter(variable), convert_to)())
-
-    print(new_content)
+    print(converter.new_content)
 
 
 if __name__ == '__main__':

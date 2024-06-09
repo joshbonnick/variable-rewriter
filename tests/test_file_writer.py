@@ -1,13 +1,13 @@
 import os
 from unittest import TestCase
 
-from php_file_writer import PHPFileWriter
+from file_writer import FileWriter
 
 
-class TestPHPFileWriter(TestCase):
+class TestFileWriter(TestCase):
     def setUp(self):
         self.target_file = os.path.join(os.path.join(os.path.dirname(__file__), 'fixtures'), 'test-writer.test')
-        self.writer = PHPFileWriter(self.target_file)
+        self.writer = FileWriter(self.target_file)
 
     def tearDown(self):
         if os.path.exists(self.target_file):

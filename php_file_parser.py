@@ -1,12 +1,11 @@
 import os.path
 import re
-import string
 
 
 class PHPFileParser:
     REGEX = r'\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*'
 
-    def __init__(self, filename: string):
+    def __init__(self, filename: str):
         self.filename = filename
         self.found_variables = []
 
@@ -26,7 +25,7 @@ class PHPFileParser:
     def variables(self):
         return self.found_variables
 
-    def parse(self, line: string):
+    def parse(self, line: str):
         variables = re.findall(self.REGEX, line)
         filtered_variables = ["$this"]
 
