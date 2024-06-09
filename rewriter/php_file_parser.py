@@ -1,7 +1,7 @@
 import os.path
 import re
 
-from contracts.file_parser import FileParser
+from rewriter.contracts.file_parser import FileParser
 
 
 class PHPFileParser(FileParser):

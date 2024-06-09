@@ -1,10 +1,10 @@
 import os
-from unittest import TestCase
+import unittest
 
 from rewriter.php_file_parser import PHPFileParser
 
 
-class TestPHPVariableFinder(TestCase):
+class TestPHPVariableFinder(unittest.TestCase):
     def setUp(self):
         self.test_files_dir = os.path.join(os.path.dirname(__file__), 'fixtures')
 
