@@ -14,7 +14,9 @@ class GitBranchService:
         if result.returncode != 0:
             raise Exception(f"Error: unable to create {self.branch_name} with `git checkout -b {self.branch_name}`")
 
-    def push(self, message: str = '', upstream: str = 'origin'):
+        return self
+
+    def push(self, message: str = 'chore: convert variable format', upstream: str = 'origin'):
         subprocess.run(["git", "add", "."])
         subprocess.run(["git", "commit", "-m", message])
         subprocess.run(["git", 'push', '-u', upstream, self.branch_name])
