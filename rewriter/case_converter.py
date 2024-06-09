@@ -9,17 +9,10 @@ class CaseConverter:
         self.variable_delimiter = delimiter
         self.subject = subject.strip(self.variable_delimiter)
 
-    def _as_variable(self, subject: str):
-        if len(subject) == 0:
-            return subject
-
-        return self.variable_delimiter + subject
-
     def camel(self) -> str:
         if len(self.subject) == 0:
             return self.subject
 
-        # Check if the string is already in camel case
         if self._is_camel_case():
             return self.subject
 
@@ -40,6 +33,12 @@ class CaseConverter:
 
     def lower(self) -> str:
         return self._as_variable(self.subject.lower())
+
+    def _as_variable(self, subject: str) -> str:
+        if len(subject) == 0:
+            return subject
+
+        return self.variable_delimiter + subject
 
     def _is_camel_case(self) -> bool:
         return match(r'^[a-z][a-zA-Z]*$', self.subject) and not match(r'^[a-z]+(?:[A-Z][a-z]*)*$', self.subject)
