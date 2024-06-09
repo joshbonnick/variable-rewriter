@@ -21,13 +21,13 @@ class PHPFileParser(FileParser):
             file.seek(0)
             self.file_content = file.read()
 
-    def content(self):
+    def content(self) -> str:
         return self.file_content
 
-    def variables(self):
+    def variables(self) -> list:
         return self.found_variables
 
-    def parse(self, line: str):
+    def parse(self, line: str) -> list:
         variables = re.findall(self.REGEX, line)
         filtered_variables = ["$this"]
 

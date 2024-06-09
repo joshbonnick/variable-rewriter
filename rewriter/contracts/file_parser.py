@@ -1,9 +1,9 @@
 class FileParser:
-    def content(self):
+    def content(self) -> str:
         pass
 
-    def variables(self):
+    def variables(self) -> list:
         pass
 
-    def parse(self, line: str):
+    def parse(self, line: str) -> list:
         pass
