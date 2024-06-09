@@ -1,4 +1,4 @@
-class FileParser:
+class IFileParser:
     def content(self) -> str:
         pass
 
