@@ -8,10 +8,13 @@ def main(file_name: str, method: str):
     converter = VariableConverter(parser, method, '$')
     FileWriter(file_name).write(converter.new_content)
 
-    branches = GitBranchService.get_branches()
+    branch_name = f'chore/{method}_conversion'
 
-    if f'chore/{method}_conversion' in branches:
-        raise Exception(f'chore/{method}_conversion branch already exists, exiting.')
+    if GitBranchService.has_branch(branch_name):
+        raise Exception(f'{branch_name} branch already exists, exiting.')
+
+    git_service = GitBranchService()
+    git_service.create(branch_name).push()
 
 
 if __name__ == '__main__':
