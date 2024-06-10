@@ -22,7 +22,7 @@ def main(glob_search: str, method: str):
         print(f'{blue}Parsing {reset}[{file}]{blue} with {reset}Parsers\\{parser.__class__.__name__}')
 
         converter = VariableConverter(parser, method)
-        print(f'{green}Found {len(parser.variables())} variables to convert.')
+        print(f'{green}Found {len(parser.variables())} variable(s).')
 
         if is_dry_run():
             file += '.dry'
@@ -48,11 +48,11 @@ def main(glob_search: str, method: str):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Rewrite variables in files.')
-    parser.add_argument('glob_search', type=str, help='The glob pattern to search for files. Surrounded with quotations.')
-    parser.add_argument('method', type=str, choices=['camel', 'snake'], nargs='?', default='camel', help='The method of conversion (camel or snake).')
-    parser.add_argument('--dry', action='store_true', help='Run in dry mode without making any changes.')
+    arguments = argparse.ArgumentParser(description='Rewrite variables in files.')
+    arguments.add_argument('glob_search', type=str, help='The glob pattern to search for files. Surrounded with quotations.')
+    arguments.add_argument('method', type=str, choices=['camel', 'snake'], nargs='?', default='camel', help='The method of conversion (camel or snake).')
+    arguments.add_argument('--dry', action='store_true', help='Run in dry mode without making any changes.')
 
-    args = parser.parse_args()
+    args = arguments.parse_args()
 
     main(args.glob_search, args.method)
