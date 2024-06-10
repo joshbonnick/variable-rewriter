@@ -8,17 +8,26 @@ def is_dry_run() -> bool:
 
 
 def main(glob_search: str, method: str):
+    red = '\033[31m'
+    green = '\033[32m'
+    blue = '\033[34m'
+    reset = '\033[0m'
+
     for file in glob(glob_search):
         parser = ParserFactory.get_parser(file)
+        print(f'\n{blue}Parsing {reset}[{file}]{blue} with {reset}Parsers\\{parser.__class__.__name__}')
 
         converter = VariableConverter(parser, method)
+        print(f'{green}Found {len(parser.variables())} variables to convert.')
 
         if is_dry_run():
             file += '.dry'
+            print(f'{red}Rewriter running in test mode, writing new file to {reset}[{file}]{red}')
 
         FileWriter(file).write(converter.new_content)
 
     if is_dry_run():
+        print(f'{red}Rewriter running in test mode, exiting before pushing to VCS.')
         exit(0)
 
     branch_name = f'chore/{method}_conversion'
