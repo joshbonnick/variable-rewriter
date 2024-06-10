@@ -27,17 +27,17 @@ python variable_rewriter.py <filepath_or_directory> <case_style> [--dry]
 
 1. **Convert variables in a single file to camelCase:**
     ```bash
-    python case_formatter.py /path/to/file.php camel
+    python variable_rewriter.py /path/to/file.php camel
     ```
 
 2. **Convert variables in a directory to snake_case:**
     ```bash
-    python case_formatter.py /path/to/directory snake
+    python variable_rewriter.py /path/to/directory snake
     ```
 
 3. **Perform a dry run to see changes without applying them:**
     ```bash
-    python case_formatter.py /path/to/directory camel --dry
+    python variable_rewriter.py /path/to/directory camel --dry
     ```
 
 ## Contributing
