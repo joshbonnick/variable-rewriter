@@ -5,6 +5,8 @@ from typing import List
 
 class GitBranchService:
     def __init__(self):
+        self.red_colour = '\033[31m'
+        self.reset_colour = '\033[0m'
         self.branch_name = ''
 
     def create(self, branch_name: str):
@@ -12,8 +14,8 @@ class GitBranchService:
 
         result = subprocess.run(["git", "checkout", '-b', self.branch_name], capture_output=True, text=True)
         if result.returncode != 0:
-            raise Exception(f"Error: unable to create {self.branch_name} with `git checkout -b {self.branch_name}`")
-
+            print(f"{self.red_colour}Unable to create '{self.branch_name}' with 'git checkout -b {self.branch_name}'\n{result.stderr}{self.reset_colour}")
+            
         return self
 
     def push(self, message: str = 'chore: convert variable format', upstream: str = 'origin'):
@@ -28,7 +30,8 @@ class GitBranchService:
             branches = result.stdout.splitlines()
             return [branch.strip() for branch in branches]
         else:
-            raise Exception("Error: unable to check for git branches with `git branch --list`")
+            print("Error: unable to check for git branches with `git branch --list`")
+            exit()
 
     @staticmethod
     def has_branch(branch: str) -> bool:
