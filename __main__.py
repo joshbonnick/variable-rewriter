@@ -4,8 +4,9 @@ from rewriter import *
 
 
 def main(file_name: str, method: str):
-    parser = PHPFileParser(file_name)
-    converter = VariableConverter(parser, method, '$')
+    parser = ParserFactory.get_parser(file_name)
+
+    converter = VariableConverter(parser, method)
     FileWriter(file_name).write(converter.new_content)
 
     branch_name = f'chore/{method}_conversion'

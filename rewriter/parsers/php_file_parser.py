@@ -27,6 +27,9 @@ class PHPFileParser(rewriter.IFileParser):
     def variables(self) -> list:
         return self.found_variables
 
+    def variable_delimiter(self) -> str:
+        return '$'
+
     def _parse(self, line: str) -> list:
         variables = re.findall(self.REGEX, line)
         filtered_variables = ["$this"]

@@ -4,3 +4,6 @@ class IFileParser:
 
     def variables(self) -> list:
         pass
+
+    def variable_delimiter(self) -> str:
+        pass
