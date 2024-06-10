@@ -41,10 +41,11 @@ def main(glob_search: str, method: str):
     branch_name = f'chore/{method}_conversion'
 
     if GitBranchService.has_branch(branch_name):
-        raise Exception(f'[{branch_name}] branch already exists.')
+        print(f'[{branch_name}] branch already exists.')
+        exit()
 
     git_service = GitBranchService()
-    git_service.create(branch_name).push()
+    git_service.create(branch_name)
 
 
 if __name__ == '__main__':
