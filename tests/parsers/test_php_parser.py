@@ -9,13 +9,13 @@ class TestPHPVariableFinder(unittest.TestCase):
         self.test_files_dir = os.path.join(os.path.dirname(__file__), '../fixtures')
 
     def test_find_variables_in_class_stub(self):
-        file_path = os.path.join(self.test_files_dir, 'class.stub')
+        file_path = os.path.join(self.test_files_dir, 'class.php')
         finder = rewriter.PHPFileParser(file_path)
 
         self.assertListEqual(finder.variables(), ['$name', '$color', '$seeds', '$fruit_name', '$fruit_label'])
 
     def test_variables_are_filtered_out(self):
-        file_path = os.path.join(self.test_files_dir, 'class.stub')
+        file_path = os.path.join(self.test_files_dir, 'class.php')
         finder = rewriter.PHPFileParser(file_path)
 
         self.assertTrue("$this" not in finder.variables())
