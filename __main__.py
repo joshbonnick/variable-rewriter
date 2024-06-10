@@ -3,11 +3,19 @@ import sys
 from rewriter import *
 
 
-def main(file_name: str, method: str):
-    parser = ParserFactory.get_parser(file_name)
+def main(glob_search: str, method: str):
+    for file in glob(glob_search):
+        parser = ParserFactory.get_parser(file)
 
-    converter = VariableConverter(parser, method)
-    FileWriter(file_name).write(converter.new_content)
+        converter = VariableConverter(parser, method)
+
+        if '--dry' in sys.argv:
+            file += '.dry'
+
+        FileWriter(file).write(converter.new_content)
+
+    if '--dry' in sys.argv:
+        exit(0)
 
     branch_name = f'chore/{method}_conversion'
 
