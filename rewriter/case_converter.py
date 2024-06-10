@@ -39,10 +39,7 @@ class CaseConverter:
         return [word for part in self.subject.split('_') for word in findall(r'[A-Z]?[a-z]*', part) if word]
 
     def _as_variable(self, subject: str) -> str:
-        if len(subject) == 0:
-            return subject
-
-        return ''.join([self.variable_delimiter, subject])
+        return f"{self.variable_delimiter}{subject}" if subject else subject
 
     def _is_camel_case(self) -> bool:
         return match(r'^[a-z][a-zA-Z]*$', self.subject) and not match(r'^[a-z]+(?:[A-Z][a-z]*)*$', self.subject)
