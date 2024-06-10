@@ -12,7 +12,7 @@ def main(file_name: str, method: str):
     branch_name = f'chore/{method}_conversion'
 
     if GitBranchService.has_branch(branch_name):
-        raise Exception(f'{branch_name} branch already exists, exiting.')
+        raise Exception(f'[{branch_name}] branch already exists.')
 
     git_service = GitBranchService()
     git_service.create(branch_name).push()
