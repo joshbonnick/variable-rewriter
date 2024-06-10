@@ -30,8 +30,11 @@ class PHPFileParser(rewriter.IFileParser):
     def variable_delimiter(self) -> str:
         return '$'
 
-    def _parse(self, line: str) -> list:
-        variables = re.findall(self.REGEX, line)
-        filtered_variables = ["$this"]
+    def _variable_filter(self, current_variables: list, variable: str) -> bool:
+        if variable == "$this" or variable in current_variables:
+            return False
 
-        return filter(lambda variable: variable not in filtered_variables and variable not in self.found_variables, variables)
+        return not bool(re.match(r'^_[A-Z]+$', variable.strip(self.variable_delimiter())))
+
+    def _parse(self, line: str) -> list:
+        return filter(lambda variable: self._variable_filter(self.found_variables, variable), re.findall(self.REGEX, line))
