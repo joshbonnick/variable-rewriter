@@ -1,3 +1,4 @@
+import argparse
 import sys
 
 from rewriter import *
@@ -14,10 +15,11 @@ def main(glob_search: str, method: str):
     reset = '\033[0m'
 
     found_files = False
+    print(f'\n{green}Rewriting variables in {glob_search} to {method} case')
     for file in glob(glob_search):
         found_files = True
         parser = ParserFactory.get_parser(file)
-        print(f'\n{blue}Parsing {reset}[{file}]{blue} with {reset}Parsers\\{parser.__class__.__name__}')
+        print(f'{blue}Parsing {reset}[{file}]{blue} with {reset}Parsers\\{parser.__class__.__name__}')
 
         converter = VariableConverter(parser, method)
         print(f'{green}Found {len(parser.variables())} variables to convert.')
@@ -46,7 +48,11 @@ def main(glob_search: str, method: str):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print(f'Usage: <glob_search> <method=camel|snake>')
-        exit(1)
-    main(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else 'camel')
+    parser = argparse.ArgumentParser(description='Rewrite variables in files.')
+    parser.add_argument('glob_search', type=str, help='The glob pattern to search for files. Surrounded with quotations.')
+    parser.add_argument('method', type=str, choices=['camel', 'snake'], nargs='?', default='camel', help='The method of conversion (camel or snake).')
+    parser.add_argument('--dry', action='store_true', help='Run in dry mode without making any changes.')
+
+    args = parser.parse_args()
+
+    main(args.glob_search, args.method)
