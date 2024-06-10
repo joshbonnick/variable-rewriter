@@ -7,6 +7,11 @@ class Fruit
   public string $color;
   public int $seeds;
 
+  public function __construct()
+  {
+      $this->seeds = $_SERVER['seeds'];
+  }
+
   public function setName($name): void
   {
       $this->name = $name;
