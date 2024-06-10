@@ -9,7 +9,7 @@ class CaseConverter:
         self.subject = subject.strip(self.variable_delimiter)
 
     def camel(self) -> str:
-        if len(self.subject) == 0 or self._is_camel_case():
+        if not self.subject or self._is_camel_case():
             return self.subject
 
         words = self._split_words()
